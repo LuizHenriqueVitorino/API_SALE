@@ -16,11 +16,15 @@ jobs:
     - name: Install Flask
       run: pip install Flask
 
-    - name: Run API
+    - name: Start API
       run: |
-        python3 mockes/mocke_sale.py
-        API_PID=$!
-        sleep 180 # Espera por 3 minutos
+        python3 mockeSale.py &
+        echo $! > api_pid.txt # Salva o PID da API em um arquivo
+        sleep 180 # Espera por 3 minutos (ou o período desejado)
+
+    - name: Stop API
+      run: |
+        API_PID=$(cat api_pid.txt) # Lê o PID da API do arquivo
         kill $API_PID # Interrompe a execução da API
 
   Roda_Os_Testes:
