@@ -23,7 +23,7 @@ jobs:
 
     - name: Start API
       run: |
-        python3 mockeSale.py &
+        python3 mockes/mocke_sale.py &
         echo $! > api_pid.txt # Salva o PID da API em um arquivo
         sleep 20 # Espera por 3 minutos (ou o período desejado)
 
