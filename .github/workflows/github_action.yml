@@ -1,0 +1,39 @@
+name: Teste Automático
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  Roda_A_API:
+    runs-on: self-hosted
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Install Flask
+      run: pip install Flask
+
+    - name: Run API
+      run: |
+        python3 mockeSale.py
+        API_PID=$!
+        sleep 180 # Espera por 3 minutos
+        kill $API_PID # Interrompe a execução da API
+
+  Roda_Os_Testes:
+    runs-on: self-hosted
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+      
+    - name: Install Robot and libraries
+      run: |
+        pip install robotframework
+        pip install robotframework-requests
+
+    - name: Run Tests
+      run: robot teste.robot
