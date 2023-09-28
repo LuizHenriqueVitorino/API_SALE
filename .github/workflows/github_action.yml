@@ -18,7 +18,7 @@ jobs:
 
     - name: Run API
       run: |
-        python3 mockeSale.py
+        python3 mockes/mocke_sale.py
         API_PID=$!
         sleep 180 # Espera por 3 minutos
         kill $API_PID # Interrompe a execução da API
@@ -36,4 +36,6 @@ jobs:
         pip install robotframework-requests
 
     - name: Run Tests
-      run: robot teste.robot
+      run: |
+        sleep 20
+        robot testes/login_test.robot
