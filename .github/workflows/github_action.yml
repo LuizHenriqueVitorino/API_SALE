@@ -68,7 +68,7 @@ jobs:
             Esta é uma mensagem automática e informativa. Por favor, não responda.
           
     - name: Send error build message to Telegram 💬❌
-        if: ${{ always() && (needs.Roda_A_API.result == 'failure') }}
+        if: ${{ always() && (needs.deploy.result == 'failure') }}
         uses: appleboy/telegram-action@master
         env:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
