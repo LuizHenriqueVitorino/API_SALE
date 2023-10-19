@@ -35,6 +35,18 @@ jobs:
       run: |
         API_PID=$(cat api_pid.txt) # Lê o PID da API do arquivo
         kill $API_PID # Interrompe a execução da API
+
+  notifyTelegram:
+    runs-on: ubuntu-latest
+    steps:
+    - name: send custom message
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        message: |
+          The ${{ github.event_name }} event triggered final step.
+          echo This event is a pull request that had an assignee removed.
       
 
     
