@@ -25,7 +25,7 @@ jobs:
       run: |
         python3 mockes/mocke_sale.py &
         echo $! > api_pid.txt # Salva o PID da API em um arquivo
-        sleep 20 # Espera por 3 minutos (ou o período desejado)
+        sleep 2
 
     - name: Run Tests
       run: |
@@ -37,16 +37,31 @@ jobs:
         kill $API_PID # Interrompe a execução da API
 
   notifyTelegram:
-    runs-on: ubuntu-latest
+    name: Notify deploy status 🚀
+    needs: [Roda_A_API]
+    if: always()
+    continue-on-error: true
+    runs-on: self-hosted
     steps:
     - name: send custom message
       uses: appleboy/telegram-action@master
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
+        format: markdown
         message: |
-          The ${{ github.event_name }} event triggered final step.
-          echo This event is a pull request that had an assignee removed.
+          ✅ Nova versão de *${{ env.STAGE_NAME }}* disponível!
+            ⎿ 📌 Autor responsável: ${{ github.actor }}
+
+            ✏️ De: [${{ github.repository }}](${{ github.repository.html_url }})
+
+            🏷️ Versão : ```${{ env.PR_NUMBER_OR_MASTER }}```
+            ⎿ 🛠️ Build : #```${{ github.run_number }}```
+
+            🧬 Alterações: [Aqui!](https://github.com/${{ github.repository }}/commit/${{ github.sha }})
+            📦 Deploy: [Aqui!](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+
+            Esta é uma mensagem automática e informativa. Por favor, não responda.
       
 
     
