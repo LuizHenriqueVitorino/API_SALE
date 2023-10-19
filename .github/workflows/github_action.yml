@@ -45,6 +45,10 @@ jobs:
     steps:
     - name: send custom message
       uses: appleboy/telegram-action@master
+      env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+          PR_NUMBER_OR_MASTER: ${{ github.event.number == 0 && 'stable from master' ||  format('#{0}', github.event.number)  }}
+          STAGE_NAME: ${{ github.ref == 'refs/heads/master' && 'produção' || 
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
@@ -62,6 +66,31 @@ jobs:
             📦 Deploy: [Aqui!](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
 
             Esta é uma mensagem automática e informativa. Por favor, não responda.
-      
+          
+    - name: Send error build message to Telegram 💬❌
+        if: ${{ always() && (needs.Roda_A_API.result == 'failure') }}
+        uses: appleboy/telegram-action@master
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+          PR_NUMBER_OR_MASTER: ${{ github.event.number == 0 && 'stable from master' ||  format('#{0}', github.event.number)  }}
+          STAGE_NAME: ${{ github.ref == 'refs/heads/master' && 'produção' || 'desenvolvimento' }}
+
+        with:
+          to: ${{ secrets.TELEGRAM_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
+          message: |
+            ❌ Nova versão de *${{ env.STAGE_NAME }}* não disponível, pois falhou!
+            ⎿ 📌 Autor responsável: ${{ github.actor }}
+
+            ✏️ De: [${{ github.repository }}](https://github.com/${{ github.repository }})
+
+            🏷️ Versão : ```${{ env.PR_NUMBER_OR_MASTER }}```
+            ⎿ 🛠️ Build : #```${{ github.run_number }}```
+
+            🧬 Alterações: [Aqui!](https://github.com/${{ github.repository }}/commit/${{ github.sha }})
+            📦 Deploy: [Aqui!](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+
+            Esta é uma mensagem automática e informativa. Por favor, 
 
     
