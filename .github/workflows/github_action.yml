@@ -45,10 +45,6 @@ jobs:
     steps:
     - name: send custom message
       uses: appleboy/telegram-action@master
-      env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-          PR_NUMBER_OR_MASTER: ${{ github.event.number == 0 && 'stable from master' ||  format('#{0}', github.event.number)  }}
-          STAGE_NAME: ${{ github.ref == 'refs/heads/master' && 'produção' || 
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
@@ -66,6 +62,8 @@ jobs:
             📦 Deploy: [Aqui!](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
 
             Esta é uma mensagem automática e informativa. Por favor, não responda.
+          
+
           
     # - name: Send error build message to Telegram 💬❌
     #     if: ${{ always() && (needs.deploy.result == 'failure') }}
