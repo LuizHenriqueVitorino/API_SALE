@@ -67,7 +67,18 @@ jobs:
             📦 Deploy: [Aqui!](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
 
             Esta é uma mensagem automática e informativa. Por favor, não responda.
-      
+  notifyTelegramTEste1:
+    name: Notify deploy status 🚀
+    needs: [Roda_A_API]
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    steps:
+    # - name: Install docker
+    #     run: |
+    #       apt-get update && apt-get install --no-install-recommends -y ca-certificates curl gnupg lsb-release sudo
+    #       curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    #       echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    #       apt-get update && apt-get install --no-install-recommends -y docker-ce docker-ce-cli containerd.io
     - name: Teste 1
       uses: appleboy/telegram-action@master
       with:
@@ -76,7 +87,19 @@ jobs:
         format: markdown
         message: |
           ✅ Teste 1
-
+      
+  notifyTelegramTEste1:
+    name: Notify deploy status 🚀
+    needs: [Roda_A_API]
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    steps:
+    # - name: Install docker
+    #     run: |
+    #       apt-get update && apt-get install --no-install-recommends -y ca-certificates curl gnupg lsb-release sudo
+    #       curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    #       echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    #       apt-get update && apt-get install --no-install-recommends -y docker-ce docker-ce-cli containerd.io
     - name: Teste 2
       uses: appleboy/telegram-action@master
       with:
@@ -85,6 +108,9 @@ jobs:
         format: markdown
         message: |
           ✅ Teste 2
+
+
+    
           
 
 
