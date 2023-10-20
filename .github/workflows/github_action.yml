@@ -96,7 +96,7 @@ jobs:
         token: ${{ secrets.TELEGRAM_TOKEN }}
         format: markdown
         message: |
-          ✅ Teste 2
+          ✅ Deus é mais!
 
   notifyTelegramTEste3:
     name: Notify deploy status Teste3 🚀
