@@ -39,7 +39,6 @@ jobs:
   notifyTelegram:
     name: Notify deploy status 🚀
     needs: [Roda_A_API]
-    if: always()
     continue-on-error: true
     runs-on: self-hosted
     steps:
@@ -64,7 +63,7 @@ jobs:
             Esta é uma mensagem automática e informativa. Por favor, não responda.
           
 
-          
+
     # - name: Send error build message to Telegram 💬❌
     #     if: ${{ always() && (needs.deploy.result == 'failure') }}
     #     uses: appleboy/telegram-action@master
