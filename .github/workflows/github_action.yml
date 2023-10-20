@@ -67,6 +67,24 @@ jobs:
             📦 Deploy: [Aqui!](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
 
             Esta é uma mensagem automática e informativa. Por favor, não responda.
+      
+    - name: Teste 1
+      uses: appleboy/telegram-action@master
+      with:
+        to: -6082736518
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        format: markdown
+        message: |
+          ✅ Teste 1
+
+    - name: Teste 2
+      uses: appleboy/telegram-action@master
+      with:
+        to: 6082736518
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        format: markdown
+        message: |
+          ✅ Teste 2
           
 
 
