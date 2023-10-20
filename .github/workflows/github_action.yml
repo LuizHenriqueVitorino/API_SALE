@@ -68,67 +68,6 @@ jobs:
 
             Esta é uma mensagem automática e informativa. Por favor, não responda.
 
-  notifyTelegramTEste1:
-    name: Notify deploy status Teste1 🚀
-    needs: [Roda_A_API]
-    continue-on-error: true
-    runs-on: ubuntu-latest
-    steps:
-    - name: Teste 1
-      uses: appleboy/telegram-action@master
-      with:
-        to: 5036257879
-        token: ${{ secrets.TELEGRAM_TOKEN }}
-        format: markdown
-        message: |
-          ✅ Teste 1
-
-  notifyTelegramTEste2:
-    name: Notify deploy status Teste2 🚀
-    needs: [Roda_A_API]
-    continue-on-error: true
-    runs-on: ubuntu-latest
-    steps:
-    - name: Teste 2
-      uses: appleboy/telegram-action@master
-      with:
-        to: -4088268458
-        token: ${{ secrets.TELEGRAM_TOKEN }}
-        format: markdown
-        message: |
-          ✅ Deus é mais!
-
-  notifyTelegramTEste3:
-    name: Notify deploy status Teste3 🚀
-    needs: [Roda_A_API]
-    continue-on-error: true
-    runs-on: ubuntu-latest
-    steps:
-    - name: Teste 3
-      uses: appleboy/telegram-action@master
-      with:
-        to: 4088268458
-        token: ${{ secrets.TELEGRAM_TOKEN }}
-        format: markdown
-        message: |
-          ✅ Teste 3
-          
-  NotificaAiPraMim:
-    name: Notifica aí pra mim! 🚀
-    needs: [Roda_A_API]
-    continue-on-error: true
-    runs-on: ubuntu-latest
-    steps:
-    - name: Teste 3
-      uses: appleboy/telegram-action@master
-      with:
-        to: 6082736518
-        token: ${{ secrets.TELEGRAM_TOKEN }}
-        format: markdown
-        message: |
-          ✅ Notificou!!!!!!
-
-
     # - name: Send error build message to Telegram 💬❌
     #     if: ${{ always() && (needs.deploy.result == 'failure') }}
     #     uses: appleboy/telegram-action@master
