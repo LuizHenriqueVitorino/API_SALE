@@ -83,7 +83,7 @@ jobs:
     - name: Teste 1
       uses: appleboy/telegram-action@master
       with:
-        to: 6935785252
+        to: 5036257879
         token: ${{ secrets.TELEGRAM_TOKEN }}
         format: markdown
         message: |
