@@ -88,7 +88,7 @@ jobs:
         message: |
           ✅ Teste 1
       
-  notifyTelegramTEste1:
+  notifyTelegramTEste2:
     name: Notify deploy status 🚀
     needs: [Roda_A_API]
     continue-on-error: true
@@ -109,7 +109,47 @@ jobs:
         message: |
           ✅ Teste 2
 
+  notifyTelegramTEste3:
+    name: Notify deploy status 🚀
+    needs: [Roda_A_API]
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    steps:
+    # - name: Install docker
+    #     run: |
+    #       apt-get update && apt-get install --no-install-recommends -y ca-certificates curl gnupg lsb-release sudo
+    #       curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    #       echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    #       apt-get update && apt-get install --no-install-recommends -y docker-ce docker-ce-cli containerd.io
+    - name: Teste 3
+      uses: appleboy/telegram-action@master
+      with:
+        to: 4088268458
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        format: markdown
+        message: |
+          ✅ Teste 3
 
+  notifyTelegramTEste4:
+    name: Notify deploy status 🚀
+    needs: [Roda_A_API]
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    steps:
+    # - name: Install docker
+    #     run: |
+    #       apt-get update && apt-get install --no-install-recommends -y ca-certificates curl gnupg lsb-release sudo
+    #       curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    #       echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    #       apt-get update && apt-get install --no-install-recommends -y docker-ce docker-ce-cli containerd.io
+    - name: Teste 4
+      uses: appleboy/telegram-action@master
+      with:
+        to: -4088268458
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        format: markdown
+        message: |
+          ✅ Teste 4
     
           
 
